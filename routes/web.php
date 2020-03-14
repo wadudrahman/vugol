@@ -14,3 +14,13 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api/v1'], function () use ($router) {
+    $router->post('/division', 'DivisionController@addDivision');
+    $router->get('/division', 'DivisionController@divisionList');
+    $router->get('/division/{id}', 'DivisionController@divisionDetails');
+    $router->put('/division/{id}', 'DivisionController@updateDivisionDetails');
+    $router->delete('/division/{id}', 'DivisionController@deleteDivision');
+});
+
+
