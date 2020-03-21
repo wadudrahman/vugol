@@ -32,20 +32,27 @@ $router->group(['prefix' => 'api/v1/'], function () use ($router) {
     $router->delete('districts/{slug}', 'DistrictController@deleteDistrict');
 
     //Upzilas
-    $router->post('upzilas', 'DistrictController@addDivision');
-    $router->get('upzilas', 'DistrictController@divisionList');
-    $router->get('upzila/{slug}', 'DistrictController@divisionDetails');
-    $router->get('{division}/upzilas', 'DistrictController@divisionDetails');
-    $router->get('{district}/upzilas', 'DistrictController@divisionDetails');
-    $router->put('upzila/{slug}', 'DistrictController@updateDivisionDetails');
-    $router->delete('upzila/{id}', 'DistrictController@deleteDivision');
+    $router->post('upzilas', 'DistrictController@addUozila');
+    $router->get('upzilas', 'DistrictController@upzilaList');
+    $router->get('upzila/{slug}', 'DistrictController@upzilaDetails');
+    $router->get('{division}/upzilas', 'DistrictController@divisionWiseUpzilaList');
+    $router->get('{district}/upzilas', 'DistrictController@districtWiseUpzilaList');
+    $router->put('upzila/{slug}', 'DistrictController@updateUpzilaDetails');
+    $router->delete('upzila/{id}', 'DistrictController@deleteUpzila');
 
     //Unions
-    $router->post('unions', 'DistrictController@addDivision');
-    $router->get('unions', 'DistrictController@divisionList');
-    $router->get('unions/{id}', 'DistrictController@divisionDetails');
-    $router->put('unions/{id}', 'DistrictController@updateDivisionDetails');
-    $router->delete('unions/{id}', 'DistrictController@deleteDivision');
+    $router->post('unions', 'DistrictController@addUnion');
+    $router->get('unions', 'DistrictController@unionList');
+    $router->get('unions/{slug}', 'DistrictController@unionDetails');
+    $router->get('{division}/unions', 'DistrictController@divisionWiseUnionList');
+    $router->get('{district}/unions', 'DistrictController@districtWiseUnionList');
+    $router->get('{upzila}/unions', 'DistrictController@upzilaWiseUnionList');
+    $router->put('unions/{slug}', 'DistrictController@updateUnionDetails');
+    $router->delete('unions/{id}', 'DistrictController@deleteUnion');
+
+    //Post Office
+    //Police Stations
+
 });
 
 
