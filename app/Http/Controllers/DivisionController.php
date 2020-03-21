@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class DivisionController extends Controller
 {
-    public static function addDivision(Request $request)
+    public function addDivision(Request $request)
     {
         $division = new DivisionModel();
         $division->name = $request->name;
@@ -18,17 +18,17 @@ class DivisionController extends Controller
         return response()->json($division);
     }
 
-    public static function divisionList()
+    public function divisionList()
     {
         return response()->json(DivisionModel::all());
     }
 
-    public static function divisionDetails($id)
+    public function divisionDetails($id)
     {
         return response()->json(DivisionModel::find($id));
     }
 
-    public static function updateDivisionDetails(Request $request, $id)
+    public function updateDivisionDetails(Request $request, $id)
     {
         $division = DivisionModel::find($id);
         $division->name = $request->input('name');
