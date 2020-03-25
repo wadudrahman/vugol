@@ -21,7 +21,7 @@ $router->group(['prefix' => 'api/v1/'], function () use ($router) {
     $router->get('divisions', 'DivisionController@divisionList');
     $router->get('divisions/{slug}', 'DivisionController@divisionDetails');
     $router->put('divisions/{slug}', 'DivisionController@updateDivisionDetails');
-    $router->delete('divisions/{slug}', 'DivisionController@deleteDivision');
+    $router->delete('divisions/{id}', 'DivisionController@deleteDivision');
 
     //Districts
     $router->post('districts', 'DistrictController@addDistrict');
@@ -35,8 +35,8 @@ $router->group(['prefix' => 'api/v1/'], function () use ($router) {
     $router->post('upzilas', 'DistrictController@addUozila');
     $router->get('upzilas', 'DistrictController@upzilaList');
     $router->get('upzila/{slug}', 'DistrictController@upzilaDetails');
-    $router->get('{division}/upzilas', 'DistrictController@divisionWiseUpzilaList');
-    $router->get('{district}/upzilas', 'DistrictController@districtWiseUpzilaList');
+    $router->get('divisions/{division}/upzilas', 'DistrictController@divisionWiseUpzilaList');
+    $router->get('districts/{district}/upzilas', 'DistrictController@districtWiseUpzilaList');
     $router->put('upzila/{slug}', 'DistrictController@updateUpzilaDetails');
     $router->delete('upzila/{id}', 'DistrictController@deleteUpzila');
 
@@ -44,8 +44,8 @@ $router->group(['prefix' => 'api/v1/'], function () use ($router) {
     $router->post('unions', 'DistrictController@addUnion');
     $router->get('unions', 'DistrictController@unionList');
     $router->get('unions/{slug}', 'DistrictController@unionDetails');
-    $router->get('{division}/unions', 'DistrictController@divisionWiseUnionList');
-    $router->get('{district}/unions', 'DistrictController@districtWiseUnionList');
+    $router->get('divisions/{division}/unions', 'DistrictController@divisionWiseUnionList');
+    $router->get('districts/{district}/unions', 'DistrictController@districtWiseUnionList');
     $router->get('{upzila}/unions', 'DistrictController@upzilaWiseUnionList');
     $router->put('unions/{slug}', 'DistrictController@updateUnionDetails');
     $router->delete('unions/{id}', 'DistrictController@deleteUnion');

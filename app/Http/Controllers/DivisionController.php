@@ -2,25 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DivisionModel;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\DivisionModel;
+use App\Http\Resources\DivisionResource;
 
 class DivisionController extends Controller
 {
     public function addDivision(Request $request)
     {
-        $division = new DivisionModel();
-        $division->name = $request->name;
-        $division->name_bn = $request->name_bn;
-        $division->url = $request->url;
-        $division->save();
+        $division = DivisionModel::create([
+            'name' => $request->name,
+            'name_bn' => $request->name_bn,
+            'slug' => Str::slug($request->name),
+            'url' => $request->url,
+        ]);
 
-        return response()->json($division);
+        return response()->json(['data' => $division]);
     }
 
     public function divisionList()
     {
-        return response()->json(DivisionModel::all());
+        die('Gege');
+        $divisions = DivisionModel::all();
+        return response()->json(['data' => $divisions]);
     }
 
     public function divisionDetails($id)
@@ -44,6 +49,6 @@ class DivisionController extends Controller
         $division = DivisionModel::find($id);
         $division->delete();
 
-        return response()->json('Division Deleted Successfully');
+        return response()->json(['message' => 'Division Deleted Successfully']);
     }
 }

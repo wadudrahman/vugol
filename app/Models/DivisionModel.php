@@ -9,6 +9,8 @@ class DivisionModel extends Model
     protected $table = 'divisions';
 
     protected $fillable = [
-      'name', 'name_bn', 'url'
+      'name', 'name_bn', 'url', 'slug'
     ];
+
+    public $timestamps = false;
 }
